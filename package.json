@@ -1,24 +1,23 @@
 {
-  "name": "socket.io",
+  "name": "socketio",
   "version": "1.0.0",
-  "description": "library for sockets",
-  "main": "app.js",
+  "description": "web socket lib",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./app.js",
+    "dev": "nodemon ./app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "chris",
+  "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
+    "onoff": "^5.0.1",
+    "pigpio": "^3.0.0",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0"
   },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/chrisalsheikh/Group-58-Smart-Breaker-Web-app.git"
-  },
-  "author": "Chris",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/chrisalsheikh/Group-58-Smart-Breaker-Web-app/issues"
-  },
-  "homepage": "https://github.com/chrisalsheikh/Group-58-Smart-Breaker-Web-app#readme"
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
 }
