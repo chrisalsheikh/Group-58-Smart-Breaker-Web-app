@@ -1,0 +1,73 @@
+.mainDiv {
+  border-style: solid;
+  border-color: black;
+  margin: auto;
+  width: 50%;
+  overflow: auto;
+}
+
+.subDiv1 {
+  border-style: solid;
+  border-color: black;
+  margin: auto;
+  overflow: auto;
+}
+
+.subDiv2 {
+  height: auto;
+  padding: 1em;
+  text-align: center;
+}
+
+.titles {
+  margin: auto;
+  text-align: center;
+}
+
+.rooms {
+  margin: 0.5em;
+  text-align: center;
+  background-color: rgba(64, 85, 245, 0.584);
+}
+
+.usages {
+  margin: 0.5em;
+  text-align: center;
+  background-color: rgba(237, 54, 54, 0.714);
+}
+
+.status {
+  margin: 0.5em;
+  text-align: center;
+  background-color: rgba(24, 186, 24, 0.721);
+}
+
+#leftDiv {
+  text-align: center;
+  border-style: solid;
+  border-color: blue;
+  float: left;
+  padding: 0.5em;
+  margin: 0.5em;
+  width: auto;
+}
+
+#midDiv {
+  text-align: center;
+  border-style: solid;
+  border-color: red;
+  float: left;
+  padding: 0.5em;
+  margin: 0.5em;
+  width: auto;
+}
+
+#rightDiv {
+  text-align: center;
+  border-style: solid;
+  border-color: green;
+  float: left;
+  padding: 0.5em;
+  margin: 0.5em;
+  width: auto;
+}

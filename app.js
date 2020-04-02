@@ -4,7 +4,7 @@ var io = require("socket.io")(http);
 var Gpio = require("onoff").Gpio;
 
 var LED = new Gpio(4, 'out');
-// var blinkInterval = setInterval();
+
 
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/index.html");
