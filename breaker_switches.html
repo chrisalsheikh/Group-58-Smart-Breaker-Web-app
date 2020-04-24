@@ -2,20 +2,18 @@
 <html class="no-js">
   <!--<![endif]-->
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title></title>
+
+    <title>Smart Circuit Breaker</title>
     <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="breaker_switches.css" />
-  </head>
+    <link rel="stylesheet" type="text/css" href="/breaker_switches.css" />
+  </head>    <meta charset="utf-8" />
   <body>
     <!-- Main Division to hold page elements-->
     <div id="mainDiv" class="mainDiv">
       <!-- Sub div holds titles and headers-->
       <div class="subDiv1">
         <h1 class="titles">Power Trip</h1>
-        <h2 class="titles">Current Analytics</h2>
+        <h2 class="titles">Power Analytics</h2>
       </div>
 
       <!-- Sub div holds button and switch elements-->
@@ -34,12 +32,28 @@
         </div>
         <div id="rightDiv">
           <h3>Status</h3>
-          <div class="status">on</div>
-          <div class="status">off</div>
-          <div class="status">on</div>
+          <div class="status" id="circuitLiving">on</div>
+          <div class="status" id="circuitGuestBed">off</div>
+          <div class="status" id="circuitMasterBed">on</div>
         </div>
       </div>
     </div>
-    <script src="" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      // $(document).ready(function(){
+      //   $(".status").click(function(){
+      //   $(this).hide();
+      //   console.log("div was hidden");
+      //   });
+      // });
+      var livingRoomStatus = document.getElementById("circuitLiving");
+      livingRoomStatus.addEventListener("click", function() {
+        console.log("Living Room Circuit toggled");
+        socket.emit("Living Room Click", "Living Room Circuit Toggled")
+      });
+
+    </script>
   </body>
 </html>

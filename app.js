@@ -1,28 +1,38 @@
 var app = require("express")();
-var http = require("http").createServer(app);
-var io = require("socket.io")(http);
+var server = require("http").Server(app);
+var io = require("socket.io")(server);
+//var path = require("path");
 var Gpio = require("onoff").Gpio;
 
 var LED = new Gpio(4, 'out');
 
+app.use(require("express").static('public'));
 
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
+app.get("/circuit", function(req, res) {
+  res.sendFile(__dirname + "/breaker_switches.html");
+});
+
 io.on("connection", function(socket) {
-  console.log("a user connected");
+  console.log("A user connected");
   socket.on("buttonClick", function(data) {
     console.log(data);
     blinkLED();
   });
+  socket.on("Living Room Click", (livingRmStatus) => {
+    console.log(livingRmStatus);
+    blinkLED();
+  })
   socket.on("disconnect", function() {
     console.log("user disconnected");
   });
 });
 
-http.listen(3000, function() {
-  console.log("listening on *:3000");
+server.listen(3000, function() {
+  console.log("Server listening on PORT 3000");
 });
 
 function blinkLED() { //function to start blinking

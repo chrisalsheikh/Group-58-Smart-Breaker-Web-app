@@ -2,7 +2,7 @@
   border-style: solid;
   border-color: black;
   margin: auto;
-  width: 50%;
+  width: auto;
   overflow: auto;
 }
 
@@ -34,40 +34,45 @@
   margin: 0.5em;
   text-align: center;
   background-color: rgba(237, 54, 54, 0.714);
+  border-radius: 2px;
 }
 
 .status {
   margin: 0.5em;
   text-align: center;
   background-color: rgba(24, 186, 24, 0.721);
+  border-radius: 2px;
 }
 
 #leftDiv {
   text-align: center;
   border-style: solid;
   border-color: blue;
+  border-radius: 5px;
   float: left;
   padding: 0.5em;
   margin: 0.5em;
-  width: auto;
+  width: 25%;
 }
 
 #midDiv {
   text-align: center;
   border-style: solid;
   border-color: red;
+  border-radius: 5px;
   float: left;
   padding: 0.5em;
   margin: 0.5em;
-  width: auto;
+  width: 25%;
 }
 
 #rightDiv {
   text-align: center;
   border-style: solid;
   border-color: green;
+  border-radius: 5px;
   float: left;
   padding: 0.5em;
   margin: 0.5em;
-  width: auto;
+  width: 25%;
 }
