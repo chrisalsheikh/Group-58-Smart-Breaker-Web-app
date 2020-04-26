@@ -1,8 +1,9 @@
 .mainDiv {
   border-style: solid;
   border-color: black;
+  background-color: black;
   margin: auto;
-  width: auto;
+  width: 50%;
   overflow: auto;
 }
 
@@ -22,57 +23,82 @@
 .titles {
   margin: auto;
   text-align: center;
+  background-color: rgb(128, 128, 128);
+}
+
+#titleContainer1 {
+  border-bottom: black solid 3px;
 }
 
 .rooms {
-  margin: 0.5em;
+  margin: 0.5em 0em 0.5em 0em;
   text-align: center;
-  background-color: rgba(64, 85, 245, 0.584);
+  background-color: rgb(33, 155, 236);
+  border-radius: 2px;
 }
 
 .usages {
-  margin: 0.5em;
+  margin: 0.5em 0em 0.5em 0em;
   text-align: center;
-  background-color: rgba(237, 54, 54, 0.714);
+  background-color: lightgray;
   border-radius: 2px;
 }
 
 .status {
-  margin: 0.5em;
+  margin: 0.5em 0em 0.5em 0em;
   text-align: center;
-  background-color: rgba(24, 186, 24, 0.721);
+  background-color: red;
   border-radius: 2px;
 }
 
 #leftDiv {
   text-align: center;
   border-style: solid;
-  border-color: blue;
+  border-color: black;
   border-radius: 5px;
+  background-color: black;
   float: left;
-  padding: 0.5em;
-  margin: 0.5em;
-  width: 25%;
+  padding: 0.25em;
+  margin: 0em;
+  width: 40%;
 }
 
 #midDiv {
   text-align: center;
   border-style: solid;
-  border-color: red;
+  border-color: black;
   border-radius: 5px;
+  background-color: black;
   float: left;
-  padding: 0.5em;
-  margin: 0.5em;
-  width: 25%;
+  padding: 0.25em;
+  margin: 0em;
+  width: 30%;
 }
 
 #rightDiv {
   text-align: center;
   border-style: solid;
-  border-color: green;
+  border-color: black;
   border-radius: 5px;
+  background-color: black;
   float: left;
-  padding: 0.5em;
-  margin: 0.5em;
-  width: 25%;
+  padding: 0.25em;
+  margin: 0em;
+  width: 10%;
+}
+
+.circuitTitleHeaders {
+  background-color: orange;
+}
+
+#circuitLiving {
+
+}
+
+#circuitGuestBed {
+  
+}
+
+#circuitMasterBed {
+  
 }
