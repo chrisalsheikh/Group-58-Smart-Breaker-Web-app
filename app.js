@@ -184,14 +184,16 @@ function updateCircuitUsage(powerObj, usageObj, statusObj, recentlyToggledObj)
         property.isChecked = true;
         usageObj.PowerData.roomID = "1";
         usageObj.PowerData.usageWatts = property.usageWatts;
-        //livingRmToggled = false;
         break;
       } else {
         console.log("no new living room data");
       }
     }
-
   } 
+  else if (livingRmToggled && (livingRoom === "off")) {
+    usageObj.PowerData.roomID = "1";
+    usageObj.PowerData.usageWatts = "0";
+  }
   else if (guestRmToggled && (guestRoom === "on")) {
     for (let property of GuestBedroom) {
       if (!property.isChecked) {
@@ -199,15 +201,16 @@ function updateCircuitUsage(powerObj, usageObj, statusObj, recentlyToggledObj)
         property.isChecked = true;
         usageObj.PowerData.roomID = "2";
         usageObj.PowerData.usageWatts = property.usageWatts;
-        //guestRmToggled = false;
         break;
       } else {
         console.log("no new guest bedroom data");
       }
     }
-
   } 
-
+  else if (guestRmToggled && (guestRoom === "off")) {
+    usageObj.PowerData.roomID = "2";
+    usageObj.PowerData.usageWatts = "0";
+  }
   else if (masterRmToggled && (masterRoom === "on")) {
     for (let property of MasterBedroom) {
       if (!property.isChecked) {
@@ -215,14 +218,17 @@ function updateCircuitUsage(powerObj, usageObj, statusObj, recentlyToggledObj)
         property.isChecked = true;
         usageObj.PowerData.roomID = "3";
         usageObj.PowerData.usageWatts = property.usageWatts;
-        //masterRmToggled = false;
         break;
       } else {
         console.log("no new master bedroom data")
       }
     }
-
-  } else {
+  } 
+  else if (masterRmToggled && (masterRoom === "off")) {
+    usageObj.PowerData.roomID = "3";
+    usageObj.PowerData.usageWatts = "0";
+  }
+  else {
     console.log("Circuit usage updates requested but circuits are off");
   }
  }

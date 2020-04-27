@@ -32,9 +32,9 @@
         <!-- Middle column of UI Corresponding to power dissaption-->
         <div id="midDiv">
           <div class="circuitTitleHeaders">Usage</div>
-          <div class="usages" id="usageLiving">0kW</div>
-          <div class="usages" id="usageGuest">0kW</div>
-          <div class="usages" id="usageMaster">0kW</div>
+          <div class="usages" id="usageLiving">0W</div>
+          <div class="usages" id="usageGuest">0W</div>
+          <div class="usages" id="usageMaster">0W</div>
         </div>
         <!-- Right column of UI Corresponding to circuit switches-->
         <div id="rightDiv">
@@ -107,13 +107,13 @@
           // chchcjsdfds
           if (usage.PowerData.roomID === "1") {
             console.log("wattage was transfered");
-            livingRoomUsage.textContent = `${usage.PowerData.usageWatts}kW`;
+            livingRoomUsage.textContent = `${usage.PowerData.usageWatts}W`;
           } else if (usage.PowerData.roomID === "2") {
             console.log("wattage was transfered");
-            guestRoomUsage.textContent = `${usage.PowerData.usageWatts}kW`;
+            guestRoomUsage.textContent = `${usage.PowerData.usageWatts}W`;
           } else if (usage.PowerData.roomID === "3") {
             console.log("wattage was transfered");
-            masterRoomUsage.textContent = `${usage.PowerData.usageWatts}kW`;
+            masterRoomUsage.textContent = `${usage.PowerData.usageWatts}W`;
           } {
             console.log("No data");
           }
