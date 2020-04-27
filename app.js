@@ -1,6 +1,7 @@
 var app = require("express")();
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
+var fs = require("fs");
 var Gpio = require("onoff").Gpio;
 
 var LED1 = new Gpio(4, 'out');
@@ -17,6 +18,9 @@ app.get("/circuit", function(req, res) {
   res.sendFile(__dirname + "/breaker_switches.html");
 });
 
+// grab power data from JSON file
+powerDataObj = JSON.parse(fs.readFileSync("PowerData.json"));
+
 /*
 // Establish Server Socket connection
 // Listen for client to connect
@@ -32,8 +36,25 @@ io.on("connection", function(socket) {
     masterRoom: ""
   };
 
+  // create object to store circuit usage (power data)
+  var circuitUsage = {
+    PowerData: {
+      roomID: "",
+      usageWatts: "0"
+    }
+  };
+
+  // create object that stores recently toggled circuit
+  var recentlyToggled = {
+    livingRmToggled: false,
+    guestRmToggled: false,
+    masterRmToggled: false
+  }
+
   updateCircuitStatus(circuitStatus);
   socket.emit("CircuitStatus", JSON.stringify(circuitStatus));
+  updateCircuitUsage(powerDataObj, circuitUsage, circuitStatus, recentlyToggled);
+  socket.emit("CircuitUsage", JSON.stringify(circuitUsage));
   
   // Client toggles Living room circuit, toggle LED1 and update circuit status
   socket.on("Living Room Click", (livingRmStatus) => {
@@ -41,6 +62,11 @@ io.on("connection", function(socket) {
     blinkLED1();
     updateCircuitStatus(circuitStatus);
     socket.emit("CircuitStatus", JSON.stringify(circuitStatus));
+    recentlyToggled.livingRmToggled = true;
+    recentlyToggled.guestRmToggled = false;
+    recentlyToggled.masterRmToggled = false;
+    updateCircuitUsage(powerDataObj, circuitUsage, circuitStatus, recentlyToggled);
+    socket.emit("CircuitUsage", JSON.stringify(circuitUsage));
   })
 
   // Client toggles Guest bedroom circuit, toggle LED2 and update circuit status
@@ -49,6 +75,11 @@ io.on("connection", function(socket) {
     blinkLED2();
     updateCircuitStatus(circuitStatus);
     socket.emit("CircuitStatus", JSON.stringify(circuitStatus));
+    recentlyToggled.livingRmToggled = false;
+    recentlyToggled.guestRmToggled = true;
+    recentlyToggled.masterRmToggled = false;
+    updateCircuitUsage(powerDataObj, circuitUsage, circuitStatus, recentlyToggled);
+    socket.emit("CircuitUsage", JSON.stringify(circuitUsage));
   })
 
   // Client toggles Master bedroom circuit, toggle LED3 and update circuit status
@@ -57,6 +88,11 @@ io.on("connection", function(socket) {
     blinkLED3();
     updateCircuitStatus(circuitStatus);
     socket.emit("CircuitStatus", JSON.stringify(circuitStatus));
+    recentlyToggled.livingRmToggled = false;
+    recentlyToggled.guestRmToggled = false;
+    recentlyToggled.masterRmToggled = true;
+    updateCircuitUsage(powerDataObj, circuitUsage, circuitStatus, recentlyToggled);
+    socket.emit("CircuitUsage", JSON.stringify(circuitUsage));
   })
 
   // Client disconnects, indicate to the console
@@ -131,5 +167,63 @@ function updateCircuitStatus(statusObj) {
   console.log(statusObj);
 }
 
+/*
+// Function Updates circuit usage object
+*/
+function updateCircuitUsage(powerObj, usageObj, statusObj, recentlyToggledObj)
+ {
+  var {LivingRoom, GuestBedroom, MasterBedroom} = powerObj;
+  var {livingRoom, guestRoom, masterRoom} = statusObj;
+  var {livingRmToggled, guestRmToggled, masterRmToggled} = recentlyToggledObj;
 
+  // check which circuit was most recently toggled
+  if (livingRmToggled && (livingRoom === "on")) {
+    for (let property of LivingRoom) {
+      if (!property.isChecked) {
+        console.log("Living room recently clicked and on");
+        property.isChecked = true;
+        usageObj.PowerData.roomID = "1";
+        usageObj.PowerData.usageWatts = property.usageWatts;
+        //livingRmToggled = false;
+        break;
+      } else {
+        console.log("no new living room data");
+      }
+    }
+
+  } 
+  else if (guestRmToggled && (guestRoom === "on")) {
+    for (let property of GuestBedroom) {
+      if (!property.isChecked) {
+        console.log("Guest bedroom recently clicked and on")
+        property.isChecked = true;
+        usageObj.PowerData.roomID = "2";
+        usageObj.PowerData.usageWatts = property.usageWatts;
+        //guestRmToggled = false;
+        break;
+      } else {
+        console.log("no new guest bedroom data");
+      }
+    }
+
+  } 
+
+  else if (masterRmToggled && (masterRoom === "on")) {
+    for (let property of MasterBedroom) {
+      if (!property.isChecked) {
+        console.log("Master bedroom recently clicked and on")
+        property.isChecked = true;
+        usageObj.PowerData.roomID = "3";
+        usageObj.PowerData.usageWatts = property.usageWatts;
+        //masterRmToggled = false;
+        break;
+      } else {
+        console.log("no new master bedroom data")
+      }
+    }
+
+  } else {
+    console.log("Circuit usage updates requested but circuits are off");
+  }
+ }
 

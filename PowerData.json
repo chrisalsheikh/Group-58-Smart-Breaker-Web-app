@@ -1,0 +1,44 @@
+{
+  "LivingRoom": [
+    {
+      "usageWatts": "200",
+      "isChecked": false
+    },
+    {
+      "usageWatts": "500",
+      "isChecked": false
+    },
+    {
+      "usageWatts": "200",
+      "isChecked": false
+    }
+  ],
+  "GuestBedroom": [
+    {
+      "usageWatts": "100",
+      "isChecked": false
+    },
+    {
+      "usageWatts": "50",
+      "isChecked": false
+    },
+    {
+      "usageWatts": "340",
+      "isChecked": false
+    }
+  ],
+  "MasterBedroom": [
+    {
+      "usageWatts": "230",
+      "isChecked": false
+    },
+    {
+      "usageWatts": "60",
+      "isChecked": false
+    },
+    {
+      "usageWatts": "1000",
+      "isChecked": false
+    }
+  ]
+}

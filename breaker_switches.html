@@ -32,9 +32,9 @@
         <!-- Middle column of UI Corresponding to power dissaption-->
         <div id="midDiv">
           <div class="circuitTitleHeaders">Usage</div>
-          <div class="usages">1kw</div>
-          <div class="usages">20kw</div>
-          <div class="usages">5kw</div>
+          <div class="usages" id="usageLiving">0kW</div>
+          <div class="usages" id="usageGuest">0kW</div>
+          <div class="usages" id="usageMaster">0kW</div>
         </div>
         <!-- Right column of UI Corresponding to circuit switches-->
         <div id="rightDiv">
@@ -59,6 +59,11 @@
       var livingRoomStatus = document.getElementById("circuitLiving");
       var guestBedroomStatus = document.getElementById("circuitGuestBed");
       var mastBedroomStatus = document.getElementById("circuitMasterBed");
+
+      // Add event listeners to usage column
+      var livingRoomUsage = document.getElementById("usageLiving");
+      var guestRoomUsage = document.getElementById("usageGuest");
+      var masterRoomUsage = document.getElementById("usageMaster");
 
       const livingRoomAlert = "Living Room Circuit Toggled";
       const guestRoomAlert  = "Guest Bedroom Circuit Toggled";
@@ -92,6 +97,26 @@
           mastBedroomStatus.style.backgroundColor= "yellowgreen";
           mastBedroomStatus.textContent = "ON";
         }
+      });
+
+      /*
+      // Socket retrieves usage of circuits
+      */
+      socket.on("CircuitUsage", function(circuitUsage) {
+          var usage = JSON.parse(circuitUsage);
+          // chchcjsdfds
+          if (usage.PowerData.roomID === "1") {
+            console.log("wattage was transfered");
+            livingRoomUsage.textContent = `${usage.PowerData.usageWatts}kW`;
+          } else if (usage.PowerData.roomID === "2") {
+            console.log("wattage was transfered");
+            guestRoomUsage.textContent = `${usage.PowerData.usageWatts}kW`;
+          } else if (usage.PowerData.roomID === "3") {
+            console.log("wattage was transfered");
+            masterRoomUsage.textContent = `${usage.PowerData.usageWatts}kW`;
+          } {
+            console.log("No data");
+          }
       });
 
       /*
