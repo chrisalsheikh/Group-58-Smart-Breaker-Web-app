@@ -1,0 +1,39 @@
+{"Room ID":"Living
+ Room","Device ID":97,"Watts":6
+5792}
+
+{"R
+oom ID":"Living Room","Device I
+D":97,"Watts":65792}
+
+{"Room ID":"Living Room","Device ID":97,"Watts":6
+5792}
+
+{"R
+oom ID":"Living Room","Device 
+ID":97,"Watts":65792}
+
+{"Room ID":"Living
+ Room","Device ID":97,"Watts":6
+5792}
+
+{"
+Room ID":"Living Room","Device 
+ID":97,"Watts":65792}
+
+{"Room ID":"Living
+ Room","Device ID":97,"Watts":0
+}
+
+{"R
+oom ID":"Living Room","Device 
+ID":97,"Watts":0}
+
+{"Room ID":"Living
+ Room","Device ID":97,"Watts":0
+}
+
+{"R
+oom ID":"Living Room","Device I
+D":97,"Watts":0}
+
